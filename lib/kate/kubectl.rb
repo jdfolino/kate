@@ -18,8 +18,10 @@ module Kate
       status
     end
 
-    def self.pods
-      cmd = [KUBE_CMD, 'get', 'po', '-o', 'json'].join(' ')
+    def self.pods(labels = nil)
+      cmd = [KUBE_CMD, 'get', 'po', '-o', 'json']
+      cmd + [labels.map{|k, v| "#{k}=#{v}"}.join(',')] if labels
+      cmd = cmd.join(' ')
       stdout, _stderr, _status = Open3.capture3(cmd)
       JSON.parse(stdout)['items']
     end

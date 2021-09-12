@@ -15,7 +15,8 @@ module Kate
 
     def target_ports; end
 
-    def labels; end
+    def labels
+    end
 
     def endpoints
       # normal output

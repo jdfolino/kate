@@ -37,6 +37,10 @@ module Kate
       result.split("\n").grep(/Name:/).first.split(':')[1].strip
     end
 
+    def resolve_config
+      result = Kubectl.exec_on_pod(name, "cat /etc/resolv.conf")
+    end
+
     private
 
     def setup_debug
