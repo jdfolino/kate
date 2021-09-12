@@ -38,7 +38,7 @@ module Kate
     end
 
     def resolve_config
-      result = Kubectl.exec_on_pod(name, "cat /etc/resolv.conf")
+      Kubectl.exec_on_pod(name, 'cat /etc/resolv.conf')
     end
 
     private

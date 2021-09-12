@@ -13,10 +13,13 @@ module Kate
       @json.dig('spec', 'selector')
     end
 
+    def name
+      @json.dig('metadata', 'name')
+    end
+
     def target_ports; end
 
-    def labels
-    end
+    def labels; end
 
     def endpoints
       # normal output

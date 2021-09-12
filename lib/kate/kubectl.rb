@@ -18,9 +18,15 @@ module Kate
       status
     end
 
+    def self.endpoints(svc_name)
+      cmd = [KUBE_CMD, 'get', 'endpoints', svc_name, '-o', 'json'].join(' ')
+      stdout, _stderr, _status = Open3.capture3(cmd)
+      JSON.parse(stdout)['subsets']
+    end
+
     def self.pods(labels = nil)
       cmd = [KUBE_CMD, 'get', 'po', '-o', 'json']
-      cmd + [labels.map{|k, v| "#{k}=#{v}"}.join(',')] if labels
+      cmd += ['-l', labels.map { |k, v| "#{k}=#{v}" }.join(',')] if labels
       cmd = cmd.join(' ')
       stdout, _stderr, _status = Open3.capture3(cmd)
       JSON.parse(stdout)['items']
