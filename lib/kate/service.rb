@@ -13,6 +13,14 @@ module Kate
       @json.dig('spec', 'selector')
     end
 
+    def target_ports; end
+
+    def labels; end
+
+    def endpoints
+      # normal output
+    end
+
     def namespace
       @json.dig('metadata', 'namespace')
     end

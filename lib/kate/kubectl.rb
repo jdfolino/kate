@@ -7,6 +7,17 @@ module Kate
   class Kubectl
     KUBE_CMD = 'kubectl'
 
+    def self.destroy_all
+      cmd = [KUBE_CMD, 'delete', 'all', '--all'].join(' ')
+      Open3.capture3(cmd)
+    end
+
+    def self.create(path)
+      cmd = [KUBE_CMD, 'create', '-f', path].join(' ')
+      _stdout, _stderr, status = Open3.capture3(cmd)
+      status
+    end
+
     def self.pods
       cmd = [KUBE_CMD, 'get', 'po', '-o', 'json'].join(' ')
       stdout, _stderr, _status = Open3.capture3(cmd)

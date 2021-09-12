@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-require_relative 'kubectl'
-require_relative 'pod'
-require_relative 'service'
+require 'kate/kubectl'
+require 'kate/pod'
+require 'kate/service'
